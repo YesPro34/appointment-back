@@ -19,7 +19,9 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'role_id' => Role::factory(),
+            'role_id' => function () {
+                return Role::all()->random()->id;
+            },
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
@@ -27,7 +29,6 @@ class ClientFactory extends Factory
             'web_site' => fake()->url(),
             'cin' => fake()->unique()->regexify('[A-Z]{2}\d{6}'),
             'type' => fake()->randomElement(['normal', 'company'])
-
         ];
     }
 }

@@ -19,6 +19,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Client::factory(10)->create(); 
+        $roles = Role::factory(4)->create();
+
+        $clients = Client::factory(10)->create(); 
+
+        
     }
 }

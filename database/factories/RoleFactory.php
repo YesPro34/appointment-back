@@ -17,7 +17,7 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->randomElement(['client', 'technicien','admin','superAdmin'])
+            'name' => fake()->unique()->randomElement(['client', 'technicien','admin','superAdmin'])
         ];
     }
 }
