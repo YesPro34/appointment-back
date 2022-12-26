@@ -21,10 +21,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
-        
         Client::factory(10)->create(); 
-        Succurcale::factory(10)->create();
-        Service::factory(10)->create();
     }
 }
