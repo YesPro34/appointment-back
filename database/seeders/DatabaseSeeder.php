@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Client;
+use App\Models\Service;
+use App\Models\Succurcale;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +21,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
+        
         Client::factory(10)->create(); 
+        Succurcale::factory(10)->create();
+        Service::factory(10)->create();
     }
 }
