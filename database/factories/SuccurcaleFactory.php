@@ -9,7 +9,7 @@ use App\Models\Role;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class SuccurcalesFactory extends Factory
+class SuccurcaleFactory extends Factory
 {
     /**
      * Define the model's default state.

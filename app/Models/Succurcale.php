@@ -10,9 +10,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class Succurcale extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
-    use HasFactory;
+{   use HasFactory;
+    use HasFactory, Notifiable;
+    //use HasApiTokens, HasFactory, Notifiable;
 
 
     public function techniciens(){
