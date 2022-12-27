@@ -9,6 +9,8 @@ use Illuminate\Support\Collection;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Client;
+use App\Models\Service;
+use App\Models\Succurcale;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,8 +21,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Role::factory(4)->create();
-        Client::factory(10)->create(); 
+        $roles = Role::factory(4)->create();
+
+        $clients = Client::factory(10)->create(); 
 
         
     }

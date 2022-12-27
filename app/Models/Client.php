@@ -9,9 +9,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Client extends  Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
     use HasFactory;
-
+    //use HasApiTokens,HasFactory, Notifiable;
+    
 
     public function ranndez_vouss(){
         

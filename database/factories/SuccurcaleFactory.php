@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Role;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Client>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ClientFactory extends Factory
+class SuccurcaleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,16 +19,12 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'role_id' => function () {
+            //
+            'role_id' =>function(){
                 return Role::all()->random()->id;
             },
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'phone' => fake()->phoneNumber(),
             'address' => fake()->streetAddress(),
-            'web_site' => fake()->url(),
-            'cin' => fake()->unique()->regexify('[A-Z]{2}\d{6}'),
-            'type' => fake()->randomElement(['normal', 'company'])
         ];
     }
 }
