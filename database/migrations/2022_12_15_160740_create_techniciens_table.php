@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('techniciens', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('succurcale_id');
             $table->foreignId('role_id');
+            $table->foreignId('succurcale_id');
             $table->string('name');
             $table->string('cin');
             $table->string('phone');
