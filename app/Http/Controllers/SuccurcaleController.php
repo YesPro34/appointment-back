@@ -13,7 +13,7 @@ class SuccurcaleController extends Controller
      */
     public static function index()
     {
-       
+       //
     }
 
     /**
@@ -35,24 +35,24 @@ class SuccurcaleController extends Controller
     public static function store(Request $request)
     {
         // Validate the request data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'address' => 'required|string|max:255'
-    ]);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255'
+        ]);
 
-      // Create a new Succurcale
-      $succurcale = new Succurcale;
-      $succurcale->role_id = 4;
-      $succurcale->name = $request->name;
-      $succurcale->address = $request->address;
-  
+        // Create a new Succurcale
+        $succurcale = new Succurcale;
+        $succurcale->role_id = 4;
+        $succurcale->name = $request->name;
+        $succurcale->address = $request->address;
+    
       // Save the client to the database
       $succurcale->save();
 
-     // Return a successful response
-     return response()->json([
-        'message' => 'Successfully created succurcale',
-    ], 201);
+        // Return a successful response
+        return response()->json([
+            'message' => 'Successfully created',
+        ], 201);
     }
 
     /**
@@ -67,7 +67,7 @@ class SuccurcaleController extends Controller
         if($succurcale != null){
             return response()->json($succurcale);
         }else{
-            echo "This item does not exist";
+           return response()->json(['error' => 'This item does not exist'],404);
         }
     }
 
@@ -105,9 +105,10 @@ class SuccurcaleController extends Controller
             
                 // Save the client to the database
                 $succurcale->save();
+                return  response()->json(["message" => "Successfully updated"],201) ;
 
             }else{
-                echo "This item does not exist";
+                return response()->json(['error' => 'This item does not exist'],404);
             }
 
     }
@@ -120,12 +121,12 @@ class SuccurcaleController extends Controller
      */
     public static function destroy($id)
     {
-        $succurcale =  Succurcale::find($id);
-        if($succurcale != null){
-            $succurcale->delete();
-            return true;
-        }else{
-            echo "This item does not exist";
-        }
+            $succurcale =  Succurcale::find($id);
+            if($succurcale != null){
+                $succurcale->delete();
+                return  response()->json(["message" => "Successfully deleted"],201) ;
+            }else{
+                return  response()->json(["error" => "This item does not exist"],404) ;
+            }
     }
 }

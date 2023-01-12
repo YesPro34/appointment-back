@@ -18,28 +18,32 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// api of Succurcale Model
 
+
+// api of Succurcale Model
 Route::post('create-succurcale',function (Request $request){
-    SuccurcaleController::store($request);
+      return SuccurcaleController::store($request);
 });
 
 Route::get('get-succurcale/{id}',function ($id) {
-    SuccurcaleController::show($id);
+      return SuccurcaleController::show($id);
 });
 
 Route::delete('delete-succurcale/{id}',function ($id) {
-   SuccurcaleController::destroy($id);
+      return SuccurcaleController::destroy($id);
 });
 
 Route::put('update-succurcale/{id}',function (Request $request, $id) {
-    SuccurcaleController::update($request,$id);
- });
+      return SuccurcaleController::update($request,$id);
+});
 
  Route::get('edit-succurcale/{id}',function ($id) {
-    SuccurcaleController::edit($id);
+      return SuccurcaleController::edit($id);
 });
  
+
+
+// api
 
 
 
