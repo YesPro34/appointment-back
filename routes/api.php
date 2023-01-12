@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RenndezvousController;
 use App\Http\Controllers\SuccurcaleController;
 use App\Models\Succurcale;
 use GrahamCampbell\ResultType\Success;
@@ -40,11 +42,38 @@ Route::put('update-succurcale/{id}',function (Request $request, $id) {
  Route::get('edit-succurcale/{id}',function ($id) {
       return SuccurcaleController::edit($id);
 });
+
+//------------------------------------------------------------------------------------------
+// api of Client Model
  
 
 
-// api
+Route::post('create-client',function (Request $request){
+    ClientController::store($request);
+});
 
+Route::get('get-client/{id}',function ($id) {
+    return ClientController::show($id);
+});
+
+Route::delete('delete-client/{id}',function ($id) {
+    ClientController::destroy($id);
+});
+
+Route::put('update-client/{id}',function (Request $request, $id) {
+    ClientController::update($request,$id);
+ });
+
+ Route::get('edit-client/{id}',function ($id) {
+    return ClientController::edit($id);
+});
+
+
+
+// api of Appointment-------------------------------------------------------
+Route::post('create-appointment',function (Request $request){
+    return RenndezvousController::store($request);
+});
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ranndez_Vous;
+use App\Models\Service;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
 class RenndezvousController extends Controller
@@ -33,28 +35,33 @@ class RenndezvousController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
            // Validate the request data
            $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255'
+                'status' => 'required|string|max:255',
+                'comment' => 'required|string|max:255'
         ]);
 
-        // Create a new Succurcale
-        $appointment = new Ranndez_Vous();
-        $appointment->client_id = $request->client_id;
-        $appointment->service_id = $request->service_id;
-        $appointment->status = $request->name;
-        $appointment->comment = $request->address;
-    
-      // Save the client to the database
-      $appointment->save();
+            $client = Client::find($request->client_id);
+            if(!$client){
+                return response()->json(['error' => 'Client not found'], 404);
+            }
+            $service = Service::find($request->service_id);
+            if(!$service){
+                return response()->json(['error' => 'Service not found'], 404);
+            }
 
-        // Return a successful response
-        return response()->json([
-            'message' => 'Successfully created',
-        ], 201);
+            $appointment = new Ranndez_Vous();
+            $appointment->client()->associate($client);
+            $appointment->service()->associate($service);
+            $appointment->status = $request->status;
+            $appointment->comment = $request->comment;
+            $appointment->save();
+
+            return response()->json([
+                'message' => 'Appointment Successfully created',
+            ], 201);
     }
 
     /**
