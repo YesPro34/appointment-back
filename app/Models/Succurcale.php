@@ -15,6 +15,12 @@ class Succurcale extends Authenticatable
     //use HasApiTokens, HasFactory, Notifiable;
 
 
+    protected $fillable = [
+        'name',
+        'address',
+    ];
+
+
     public function techniciens(){
         
         // One To Many relationship ( Succurcale => Technicien)  

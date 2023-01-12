@@ -25,7 +25,7 @@ class Ranndez_VousFactory extends Factory
             'service_id' => function () {
                 return Service::all()->random()->id;
             },
-            'status' => fake()->word(),
+            'status' => fake()->randomElement(['confirmed', 'canceled','non confirmed','finished']),
             'comment' => fake()->paragraph()
         ];
     }

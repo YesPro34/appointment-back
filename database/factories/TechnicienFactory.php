@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
-use App\Models\Service;
-use App\Models\Succurcale;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\Role;
+use App\Models\Succurcale;
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Technicien>
  */
-class ServiceFactory extends Factory
+class TechnicienFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,12 +21,18 @@ class ServiceFactory extends Factory
     {
         return [
             //
+            'role_id' => function () {
+                return Role::all()->random()->id;
+            },
             'succurcale_id' =>function(){
                 return Succurcale::all()->random()->id;
             },
             'name' => fake()->name(),
-            'slug' => fake()->slug(),
-            'description' => fake()->paragraph(),
+            'cin' => fake()->unique()->regexify('[A-Z]{2}\d{6}'),
+            'phone' => fake()->phoneNumber(),
+
+            
+
         ];
     }
 }
