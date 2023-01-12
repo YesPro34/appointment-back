@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SuccurcaleController;
 use App\Models\Succurcale;
 use GrahamCampbell\ResultType\Success;
@@ -25,7 +26,7 @@ Route::post('create-succurcale',function (Request $request){
 });
 
 Route::get('get-succurcale/{id}',function ($id) {
-    SuccurcaleController::show($id);
+    return SuccurcaleController::show($id);
 });
 
 Route::delete('delete-succurcale/{id}',function ($id) {
@@ -37,9 +38,34 @@ Route::put('update-succurcale/{id}',function (Request $request, $id) {
  });
 
  Route::get('edit-succurcale/{id}',function ($id) {
-    SuccurcaleController::edit($id);
+    return SuccurcaleController::edit($id);
 });
+
+//------------------------------------------------------------------------------------------
+// api of Client Model
  
+
+
+Route::post('create-client',function (Request $request){
+    ClientController::store($request);
+});
+
+Route::get('get-client/{id}',function ($id) {
+    return ClientController::show($id);
+});
+
+Route::delete('delete-client/{id}',function ($id) {
+    ClientController::destroy($id);
+});
+
+Route::put('update-client/{id}',function (Request $request, $id) {
+    ClientController::update($request,$id);
+ });
+
+ Route::get('edit-client/{id}',function ($id) {
+    return ClientController::edit($id);
+});
+
 
 
 

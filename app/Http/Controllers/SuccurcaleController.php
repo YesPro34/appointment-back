@@ -67,7 +67,7 @@ class SuccurcaleController extends Controller
         if($succurcale != null){
             return response()->json($succurcale);
         }else{
-            echo "This item does not exist";
+             "This item does not exist";
         }
     }
 
