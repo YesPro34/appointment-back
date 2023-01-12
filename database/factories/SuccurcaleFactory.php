@@ -24,7 +24,7 @@ class SuccurcaleFactory extends Factory
                 return Role::all()->random()->id;
             },
             'name' => fake()->name(),
-            'address' => fake()->streetAddress(),
+            'address' => fake()->streetAddress(), 
         ];
     }
 }
