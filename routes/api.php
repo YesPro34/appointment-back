@@ -44,8 +44,6 @@ Route::get('edit-succurcale/{id}',function ($id) {
 
 //------------------------------------------------------------------------------------------
 // api of Client Model
- 
-
 
 Route::post('create-client',function (Request $request){
     return ClientController::store($request);
@@ -70,19 +68,6 @@ Route::get('edit-client/{id}',function ($id) {
 //------------------------------------------------------------------------------------------
 // api of Service Model
 
-
-// api of Appointment-------------------------------------------------------
-Route::post('create-appointment',function (Request $request){
-    return RenndezvousController::store($request);
-});
-
-Route::put('update-appointment/{id}',function (Request $request, $id){
-    return RenndezvousController::update($request, $id);
-});
-
-Route::get('get-appointment/{id}',function ($id){
-    return RenndezvousController::show($id);
-});
 Route::post('create-service',function (Request $request){
     return ServiceController::store($request);
 });
@@ -106,6 +91,21 @@ Route::get('edit-service/{id}',function ($id) {
 Route::delete('delete-appointment/{id}',function ($id) {
     return RenndezvousController::destroy($id);
 });
+
+// api of Appointment
+//-------------------------------------------------------
+Route::post('create-appointment',function (Request $request){
+    return RenndezvousController::store($request);
+});
+
+Route::put('update-appointment/{id}',function (Request $request, $id){
+    return RenndezvousController::update($request, $id);
+});
+
+Route::get('get-appointment/{id}',function ($id){
+    return RenndezvousController::show($id);
+});
+
 
 // //------------------------------------
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
