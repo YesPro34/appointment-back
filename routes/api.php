@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RenndezvousController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SuccurcaleController;
 use Illuminate\Http\Request;
@@ -18,14 +19,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// api of Succurcale Model
 
+
+// api of Succurcale Model
 Route::post('create-succurcale',function (Request $request){
     return SuccurcaleController::store($request);
 });
 
 Route::get('get-succurcale/{id}',function ($id) {
-    return SuccurcaleController::show($id);
+      return SuccurcaleController::show($id);
 });
 
 Route::delete('delete-succurcale/{id}',function ($id) {
@@ -69,6 +71,18 @@ Route::get('edit-client/{id}',function ($id) {
 // api of Service Model
 
 
+// api of Appointment-------------------------------------------------------
+Route::post('create-appointment',function (Request $request){
+    return RenndezvousController::store($request);
+});
+
+Route::put('update-appointment/{id}',function (Request $request, $id){
+    return RenndezvousController::update($request, $id);
+});
+
+Route::get('get-appointment/{id}',function ($id){
+    return RenndezvousController::show($id);
+});
 Route::post('create-service',function (Request $request){
     return ServiceController::store($request);
 });
@@ -89,6 +103,11 @@ Route::get('edit-service/{id}',function ($id) {
     return ServiceController::edit($id);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::delete('delete-appointment/{id}',function ($id) {
+    return RenndezvousController::destroy($id);
 });
+
+// //------------------------------------
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

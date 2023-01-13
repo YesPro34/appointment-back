@@ -9,11 +9,19 @@ class Ranndez_Vous extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'client_id',
+        'service_id',
+        'status',
+        'comment'
+    ];
+
+
     public function client(){
         
         // Many To One relationship ( Client => Ranndez_Vous) 
         
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Models\Client');
  
     }
 
@@ -22,7 +30,7 @@ class Ranndez_Vous extends Model
         
         // Many To One relationship ( Ranndez_Vous => Ranndez_Vous) 
         
-        return $this->belongsTo('App\Service');
+        return $this->belongsTo('App\Models\Service');
  
     }
 }

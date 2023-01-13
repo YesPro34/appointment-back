@@ -26,7 +26,9 @@ class Ranndez_VousFactory extends Factory
                 return Service::all()->random()->id;
             },
             'status' => fake()->randomElement(['confirmed', 'canceled','non confirmed','finished']),
-            'comment' => fake()->paragraph()
+            'comment' => fake()->paragraph(),
+            'appointment_date' => fake()->dateTimeBetween('now', '+30 days'),
+            'appointment_time' => fake()->time()
         ];
     }
 }
