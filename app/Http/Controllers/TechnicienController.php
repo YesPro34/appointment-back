@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\Technicien;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class TechnicienController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class ServiceController extends Controller
     public static function index()
     {
         //
-        $services = Service::all();
-            return response()->json($services);
-       
+        $techniciens = Technicien::all();
+        return response()->json($techniciens);
     }
 
     /**
@@ -27,7 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**
@@ -38,20 +37,21 @@ class ServiceController extends Controller
      */
     public static function store(Request $request)
     {
-        //
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'cin' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
         ]);
-        $service = new Service;
         
-        $service->succurcale_id = 4;
-        $service->name = $request->name;
-        $service->slug = $request->slug;
-        $service->description = $request->description;
+        $technicien = new Technicien;
+        
+        $technicien->role_id = 4;
+        $technicien->succurcale_id = 4;
+        $technicien->name = $request->name;
+        $technicien->cin = $request->cin;
+        $technicien->phone = $request->phone;
     
-        $service->save();
+        $technicien->save();
 
         return response()->json(['message' => 'Successfully created',201]);
     }
@@ -65,12 +65,13 @@ class ServiceController extends Controller
     public static function show($id)
     {
         //
-        $service = Service::find($id);
-        if($service != null){
-            return response()->json($service);
+        $technicien = Technicien::find($id);
+        if($technicien != null){
+            return response()->json($technicien);
         }else{
             return response()->json(['message' => 'This item does not exist',404]);
     }
+
     }
 
     /**
@@ -82,8 +83,8 @@ class ServiceController extends Controller
     public static function edit($id)
     {
         //
-        $service = Service::find($id);
-        return view('edit-client', compact('service'));
+        $technicien = Technicien::find($id);
+        return view('edit-client', compact('technicien'));
     }
 
     /**
@@ -96,27 +97,28 @@ class ServiceController extends Controller
     public static function update(Request $request, $id)
     {
         //
-        $service = Service::find($id);
-
-        if($service != null){
+        $technicien = Technicien::find($id);
+        if ($technicien != null){
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'cin' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
         ]);
-
-        $service->succurcale_id = 4;
-        $service->name = $request->name;
-        $service->slug = $request->slug;
-        $service->description = $request->description;
+        
+        $technicien = new Technicien;
+        
+        $technicien->role_id = 4;
+        $technicien->succurcale_id = 4;
+        $technicien->name = $request->name;
+        $technicien->cin = $request->cin;
+        $technicien->phone = $request->phone;
     
-        $service->save();
+        $technicien->save();
         return response()->json(['message' => 'Successfully updated',201]);
         }
         else{
             return response()->json(['message' => 'This item does not exist',404]);
         }
-        
     }
 
     /**
@@ -128,14 +130,14 @@ class ServiceController extends Controller
     public static function destroy($id)
     {
         //
-        $service = Service::find($id);
+        $technicien = Technicien::find($id);
 
-        if($service != null){
-            $service->delete();
+        if($technicien != null){
+            $technicien->delete();
             return response()->json(['message' => 'Successfully deleted',201]);
         }
         else{
             return response()->json(['message' => 'This item does not exist',404]);
         }
-}
+    }
 }
