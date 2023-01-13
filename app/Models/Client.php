@@ -18,7 +18,7 @@ class Client extends  Authenticatable
         
         // One To Many relationship ( Client => Ranndez_Vous) 
         
-        return $this->hasMany('App\Ranndez_Vous');
+        return $this->hasMany('App\Models\Ranndez_Vous');
  
     }
 
@@ -26,7 +26,7 @@ class Client extends  Authenticatable
         
         // Many To One relationship ( Client => Role) 
         
-        return $this->belongsTo('App\Role');
+        return $this->belongsTo('App\Models\Role');
  
     }
 
