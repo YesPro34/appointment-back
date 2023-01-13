@@ -43,9 +43,9 @@ class ClientController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-    
+
         ]);
-        
+
         $client = new Client;
         $client->role_id = 4;
         $client->name = $request->name;
@@ -56,13 +56,13 @@ class ClientController extends Controller
         $client->cin = $request->cin;
         $client->type = $request->type;
 
-      
+
         $client->save();
 
-        return response()->json(['message' => 'Successfully created',201]);
+        return response()->json(['message' => 'Successfully created', 201]);
     }
 
-     
+
 
     /**
      * Display the specified resource.
@@ -74,12 +74,12 @@ class ClientController extends Controller
     {
         //
         $client = Client::find($id);
-        if($client != null){
+        if ($client != null) {
             return response()->json($client);
-        }else{
-            return response()->json(['message' => 'This item does not exist',404]);
+        } else {
+            return response()->json(['message' => 'This item does not exist', 404]);
+        }
     }
-}
 
     /**
      * Show the form for editing the specified resource.
@@ -107,16 +107,16 @@ class ClientController extends Controller
         echo "ok";
 
         $client =  Client::find($id);
-        
-        if($client != null){
-            
+
+        if ($client != null) {
+
             $request->validate([
-                    'name' => 'required|string|max:255',
-                    'email' => 'required|email|max:255',
-                    'phone' => 'required|string|max:255',
-                    'address' => 'required|string|max:255'             
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'phone' => 'required|string|max:255',
+                'address' => 'required|string|max:255'
             ]);
-            
+
             $client->role_id = 4;
             $client->name = $request->name;
             $client->email = $request->email;
@@ -125,14 +125,13 @@ class ClientController extends Controller
             $client->web_site = $request->web_site;
             $client->cin = $request->cin;
             $client->type = $request->type;
-        
+
             // Save the client to the database
             $client->save();
-            
-            return response()->json(['message' => 'Successfully updated',201]);
-        }
-        else{
-            return response()->json(['error' => 'This item does not exist',404]);
+
+            return response()->json(['message' => 'Successfully updated', 201]);
+        } else {
+            return response()->json(['error' => 'This item does not exist', 404]);
         }
     }
 
@@ -146,11 +145,11 @@ class ClientController extends Controller
     {
         //
         $client =  Client::find($id);
-        if($client != null){
+        if ($client != null) {
             $client->delete();
-            return response()->json(['message' => 'Successfully deleted',201]);
-        }else{
-            return response()->json(['error' => 'This item does not exist',404]);
+            return response()->json(['message' => 'Successfully deleted', 201]);
+        } else {
+            return response()->json(['error' => 'This item does not exist', 404]);
         }
     }
 }
