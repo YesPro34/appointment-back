@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\RenndezvousController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TechnicienController;
 use App\Http\Controllers\SuccurcaleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteTechnicienProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
@@ -88,12 +89,13 @@ Route::get('edit-service/{id}',function ($id) {
     return ServiceController::edit($id);
 });
 
-Route::delete('delete-appointment/{id}',function ($id) {
-    return RenndezvousController::destroy($id);
+Route::get('list-services',function () {
+    return ServiceController::index();
 });
 
 // api of Appointment
 //-------------------------------------------------------
+
 Route::post('create-appointment',function (Request $request){
     return RenndezvousController::store($request);
 });
@@ -105,6 +107,38 @@ Route::put('update-appointment/{id}',function (Request $request, $id){
 Route::get('get-appointment/{id}',function ($id){
     return RenndezvousController::show($id);
 });
+
+Route::delete('delete-appointment/{id}',function ($id) {
+    return RenndezvousController::destroy($id);
+});
+
+//------------------------------------------------------------------------------------------
+// api of Technicien Model
+
+Route::post('create-technicien',function (Request $request){
+    return TechnicienController::store($request);
+});
+
+Route::get('get-technicien/{id}',function ($id) {
+    return TechnicienController::show($id);
+});
+
+Route::delete('delete-technicien/{id}',function ($id) {
+    return TechnicienController::destroy($id);
+});
+
+Route::put('update-technicien/{id}',function (Request $request, $id) {
+    return TechnicienController::update($request,$id);
+});
+
+Route::get('edit-technicien/{id}',function ($id) {
+    return TechnicienController::edit($id);
+});
+
+Route::get('list-techniciens',function () {
+    return TechnicienController::index();
+});
+
 
 
 // //------------------------------------
