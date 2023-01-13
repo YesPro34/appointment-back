@@ -75,7 +75,19 @@ Route::post('create-appointment',function (Request $request){
     return RenndezvousController::store($request);
 });
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::put('update-appointment/{id}',function (Request $request, $id){
+    return RenndezvousController::update($request, $id);
 });
+
+Route::get('get-appointment/{id}',function ($id){
+    return RenndezvousController::show($id);
+});
+
+Route::delete('delete-appointment/{id}',function ($id) {
+    return RenndezvousController::destroy($id);
+});
+
+// //------------------------------------
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

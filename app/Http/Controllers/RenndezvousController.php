@@ -40,9 +40,10 @@ class RenndezvousController extends Controller
            // Validate the request data
            $request->validate([
                 'status' => 'required|string|max:255',
-                'comment' => 'required|string|max:255'
+                'comment' => 'required|string|max:255',
+                'appointment_date' => 'required|date|after:today',
+                'appointment_time' => 'required|date_format:H:i'
         ]);
-
             $client = Client::find($request->client_id);
             if(!$client){
                 return response()->json(['error' => 'Client not found'], 404);
@@ -51,12 +52,13 @@ class RenndezvousController extends Controller
             if(!$service){
                 return response()->json(['error' => 'Service not found'], 404);
             }
-
             $appointment = new Ranndez_Vous();
             $appointment->client()->associate($client);
             $appointment->service()->associate($service);
             $appointment->status = $request->status;
             $appointment->comment = $request->comment;
+            $appointment->appointment_date = $request->appointment_date;
+            $appointment->appointment_time = $request->appointment_time;
             $appointment->save();
 
             return response()->json([
@@ -70,9 +72,14 @@ class RenndezvousController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public static function show($id)
     {
-        //
+        $appointment = Ranndez_Vous::find($id);
+        if($appointment != null){
+            return response()->json($appointment);
+        }else{
+            return response()->json(['error' => 'This item does not exist'],404);
+        }
     }
 
     /**
@@ -93,9 +100,31 @@ class RenndezvousController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public static function update(Request $request, $id)
     {
-        //
+        $appointment = Ranndez_Vous::find($id);
+
+        if($appointment != null){
+            $request->validate([
+                'status' => 'string|max:255',
+                'comment' => 'string|max:255'
+            ]);
+
+            $appointment->client_id = $request->client_id;
+            $appointment->service_id = $request->service_id;
+            $appointment->status = $request->status;
+            $appointment->comment = $request->comment;
+            $appointment->appointment_date = $request->appointment_date;
+            $appointment->appointment_time = $request->appointment_time;
+        
+            // Save the client to the database
+            $appointment->save();
+            return  response()->json(["message" => "Successfully updated"],201) ;
+
+        }else{
+            return response()->json(['error' => 'This item does not exist'],404);
+        }
+        
     }
 
     /**
@@ -104,8 +133,14 @@ class RenndezvousController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public static function destroy($id)
     {
-        //
+         $appointment =  Ranndez_Vous::find($id);
+            if($appointment != null){
+                $appointment->delete();
+                return  response()->json(["message" => "Successfully deleted"],201) ;
+            }else{
+                return  response()->json(["error" => "This item does not exist"],404) ;
+            }
     }
 }
