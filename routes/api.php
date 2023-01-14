@@ -117,7 +117,7 @@ Route::delete('delete-appointment/{id}', function ($id) {
     return RenndezvousController::destroy($id);
 });
 
-Route::get('getAll-appointment', function () {
+Route::get('list-appointment', function () {
     return RenndezvousController::showAll();
 });
 
