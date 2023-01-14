@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id');
             $table->foreignId('service_id');
-            $table->string('status');
-            $table->text('comment');
+            $table->string('status')->default('upcoming');
+            $table->text('comment')->nullable();
             $table->date('appointment_date');
             $table->time('appointment_time');
             $table->timestamps();
