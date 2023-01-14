@@ -43,6 +43,11 @@ Route::get('edit-succurcale/{id}', function ($id) {
     return SuccurcaleController::edit($id);
 });
 
+
+Route::get('getAll-succurcale', function () {
+    return SuccurcaleController::showAll();
+});
+
 //------------------------------------------------------------------------------------------
 // api of Client Model
 
@@ -112,8 +117,11 @@ Route::delete('delete-appointment/{id}', function ($id) {
     return RenndezvousController::destroy($id);
 });
 
-//------------------------------------------------------------------------------------------
-// api of Technicien Model
+Route::get('getAll-appointment', function () {
+    return RenndezvousController::showAll();
+});
+
+// api of Techniciens
 
 Route::post('create-technicien', function (Request $request) {
     return TechnicienController::store($request);
@@ -138,6 +146,7 @@ Route::get('edit-technicien/{id}', function ($id) {
 Route::get('list-techniciens', function () {
     return TechnicienController::index();
 });
+
 
 
 

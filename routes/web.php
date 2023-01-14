@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SuccurcaleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RenndezvousController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 
 //Route::post('/create-succurcale','SuccurcaleController@store');

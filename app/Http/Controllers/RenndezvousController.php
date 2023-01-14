@@ -140,4 +140,13 @@ class RenndezvousController extends Controller
             return  response()->json(["error" => "This item does not exist"], 404);
         }
     }
+
+
+    public static function showAll(){
+        $appointments = Ranndez_Vous::all();
+         return response()->json($appointments);
+    }
+
+
+
 }
