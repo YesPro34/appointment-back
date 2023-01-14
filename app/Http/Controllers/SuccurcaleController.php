@@ -129,4 +129,11 @@ class SuccurcaleController extends Controller
                 return  response()->json(["error" => "This item does not exist"],404) ;
             }
     }
+
+
+    public static function showAll(){
+        
+            $succurcales = Succurcale::all();
+            return response()->json($succurcales);
+    }
 }

@@ -43,6 +43,11 @@ Route::put('update-succurcale/{id}',function (Request $request, $id) {
       return SuccurcaleController::edit($id);
 });
 
+
+Route::get('getAll-succurcale',function () {
+    return SuccurcaleController::showAll();
+});
+
 //------------------------------------------------------------------------------------------
 // api of Client Model
  
@@ -87,7 +92,20 @@ Route::delete('delete-appointment/{id}',function ($id) {
     return RenndezvousController::destroy($id);
 });
 
+Route::get('getAll-appointment',function (){
+    return RenndezvousController::showAll();
+});
+
+
+
 // //------------------------------------
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+
+
+
+Route::get('getAll-appointment',function (){
+    return RenndezvousController::showAll();
+});
