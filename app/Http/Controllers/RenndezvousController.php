@@ -142,11 +142,11 @@ class RenndezvousController extends Controller
     }
 
 
-    public static function showAll(){
-        $appointments = Ranndez_Vous::all();
-         return response()->json($appointments);
+    public static function showAll()
+    {
+        // return appointments with services
+        $appointments = Ranndez_Vous::with('service')->get();
+
+        return response()->json($appointments);
     }
-
-
-
 }

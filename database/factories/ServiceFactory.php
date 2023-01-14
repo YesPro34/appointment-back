@@ -21,10 +21,10 @@ class ServiceFactory extends Factory
     {
         return [
             //
-            'succurcale_id' =>function(){
+            'succurcale_id' => function () {
                 return Succurcale::all()->random()->id;
             },
-            'name' => fake()->name(),
+            'name' => fake()->sentence(),
             'slug' => fake()->slug(),
             'description' => fake()->paragraph(),
         ];
