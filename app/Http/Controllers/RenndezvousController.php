@@ -106,15 +106,15 @@ class RenndezvousController extends Controller
         if ($appointment != null) {
             $request->validate([
                 'status' => 'string|max:255',
-                'comment' => 'string|max:255'
+                // 'comment' => 'string|max:255'
             ]);
 
-            $appointment->client_id = $request->client_id;
-            $appointment->service_id = $request->service_id;
+            // $appointment->client_id = $request->client_id;
+            // $appointment->service_id = $request->service_id;
             $appointment->status = $request->status;
-            $appointment->comment = $request->comment;
-            $appointment->appointment_date = $request->appointment_date;
-            $appointment->appointment_time = $request->appointment_time;
+            // $appointment->comment = $request->comment;
+            // $appointment->appointment_date = $request->appointment_date;
+            // $appointment->appointment_time = $request->appointment_time;
 
             // Save the client to the database
             $appointment->save();
@@ -144,8 +144,8 @@ class RenndezvousController extends Controller
 
     public static function showAll()
     {
-        // return appointments with services
-        $appointments = Ranndez_Vous::with('service')->get();
+        // return appointments with services and client
+        $appointments = Ranndez_Vous::with('service', 'client')->get();
 
         return response()->json($appointments);
     }

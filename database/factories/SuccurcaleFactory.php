@@ -20,11 +20,12 @@ class SuccurcaleFactory extends Factory
     {
         return [
             //
-            'role_id' =>function(){
+            'role_id' => function () {
                 return Role::all()->random()->id;
             },
             'name' => fake()->name(),
-            'address' => fake()->streetAddress(), 
+            'address' => fake()->streetAddress(),
+            'phone' => fake()->phoneNumber(),
         ];
     }
 }

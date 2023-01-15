@@ -25,7 +25,7 @@ class Ranndez_VousFactory extends Factory
             'service_id' => function () {
                 return Service::all()->random()->id;
             },
-            'status' => fake()->randomElement(['upcoming', 'done']),
+            'status' => 'upcoming',
             'comment' => fake()->paragraph(),
             'appointment_date' => fake()->dateTimeBetween('now', '+30 days'),
             'appointment_time' => fake()->time()
